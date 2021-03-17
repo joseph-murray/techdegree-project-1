@@ -6,7 +6,20 @@ project 1 - A Random Quote Generator
 // For assistance: 
   // Check the "Project Resources" section of the project instructions
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
+  
+  
+  
+  
+  
+  
+  
+  function random_bg_color() { // this function creates a random background color and will be used in the print quote function 
+    var x = Math.floor(Math.random() * 256);
+    var y = Math.floor(Math.random() * 256);
+    var z = Math.floor(Math.random() * 256);
+    var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+    document.body.style.background = bgColor;
+    }
 /*** 
  * `quotes` array 
 ***/
@@ -20,7 +33,7 @@ let quotes = // an array of quotes and tags about the quotes
   },
   { quote: ' "When something is important enough, you do it even if the odds are not in your favor." ',
     source: 'Elon Musk,',
-    citation: '60 Minutes Overtime Interview', 
+    citation: 'during 60 Minutes Overtime Interview', 
     year: ' March 18th, 2012, ',
     tag: ' Business, Inspiration' 
   },
@@ -38,7 +51,7 @@ let quotes = // an array of quotes and tags about the quotes
   },
   { quote: ' "Betting against entrepreneurs who are changing the world has never been a profitable endeavor." ',
     source: 'Chamath Palihapitiya',
-    citation: ' on CNBC Interview', 
+    citation: ' during CNBC Interview', 
     year: ', April 30, 2019',
     tag: ' Business, Tech' 
   } 
@@ -53,7 +66,7 @@ function getRandomQuote() {return quotes[Math.floor(Math.random() * quotes.lengt
  * `printQuote` function
 ***/
 
-function printQuote() { // set interval will call this function every few seconds
+function printQuote() {
   var randomQuote = getRandomQuote(); // returns randomQuote function
   var html = // concatonating data into html template literals
   ` <p class = "quote"> ${randomQuote.quote} </p>
@@ -65,9 +78,11 @@ function printQuote() { // set interval will call this function every few second
   `; // end of template literals html
   
   document.getElementById('quote-box').innerHTML = html; // inserts html code into the html file 
+
+  random_bg_color();
 }; // time in miliseconds 
 
-setInterval(printQuote, 5000);
+setInterval(printQuote, 10000); // executes printQuote function at this interval in milliseconds 
 
 /***
  * click event listener for the print quote button
